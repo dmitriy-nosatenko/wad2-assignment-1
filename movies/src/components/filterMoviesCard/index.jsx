@@ -2,7 +2,7 @@
 //Input: props
 //Output: an MUI card containing the 2 inputs and a decorative image.
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -25,12 +25,43 @@ const formControl = {
 };
 
 export default function FilterMoviesCard(props) {
-    const genres = [
-        { id: 1, name: "Animation" },
-        { id: 2, name: "Comedy" },
-        { id: 3, name: "Thriller" },
-    ];
+    const [genres, setGenres] = useState([{ id: "0", name: "All"}]);
 
+    //Runs once after the first render; loads the genre list from TMDB.
+
+    useEffect(() => {
+        fetch(
+            "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
+            import.meta.env.VITE_TMDB_KEY 
+        )
+        .then((res) => res.json())
+        .then((json) => {
+            console.log(json.genres)
+        })
+        .then((apiGenres) => {
+            //Keep 'All' first, then the genres from the API. 
+            setGenres([genres[0], ...apiGenres]);
+        }); 
+    }, []); 
+
+    /**
+     * type = which input changed ("name" or "genre"); 
+     * value = what the user entered. 
+     */
+
+    const handleChange = (e, type, value) => {
+        e.preventDefault();
+        props.onUserInput(type, value);
+        //prevents the page from fully reloading after input & enter
+    };
+
+    const handleTextChange = (e) => {
+        handleChange(e, "name", e.target.value);
+    };
+
+    const handleGenreChange = (e) => {
+        handleChange(e, "genre", e.target.value); 
+    }
     return (
         <Card sx={{ backgroundColor: "rgb(204, 204, 0)" }}
         variant="outlined">
@@ -46,7 +77,9 @@ export default function FilterMoviesCard(props) {
                 id="filled-search"
                 label="Search field"
                 type="search"
-                variant="filled" 
+                variant="filled"
+                value={props.titleFilter}
+                onChange={handleTextChange}  
                 />
 
                 {/* Dropdown: labelId must match
@@ -54,7 +87,13 @@ export default function FilterMoviesCard(props) {
                     to the select.  */}
                     <FormControl sx={{ ...formControl }}>
                         <InputLabel id="genre-label">Genre</InputLabel>
-                        <Select labelId="genre-label" id="genre-select">
+                        <Select 
+                        labelId="genre-label" 
+                        id="genre-select"
+                        defaultValue=""
+                        value={props.genreFilter}
+                        onChange={handleGenreChange} 
+                        >
                             {/* One MenuItem per genre,
                                 built at runtime with map;
                                 key is the genre id. */}
