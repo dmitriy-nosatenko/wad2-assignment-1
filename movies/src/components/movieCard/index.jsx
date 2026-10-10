@@ -25,6 +25,9 @@ export default function MovieCard(props) {
     const movie = props.movie;
     return (
         <Card>
+            {/* outer {} of sx -> JSX "run JS Here" like value={count}
+                inner {} of sx -> JavaScript object { X: Y } holding the styles 
+                Property name, written in camelCase (backgroundColor)*/}
             <CardHeader title={movie.title} sx={{ textWrap: "nowrap" }} />
         
         <CardMedia

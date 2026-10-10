@@ -6,19 +6,22 @@
 
 import React from "react";
 import Grid from "@mui/material/Grid";
+import MovieCard from "../components/movieCard"; 
 
 const HomePage = (props) => {
-    //Movie list passed in by the parent. Not rendered yet.
+   
     const movies = props.movies; 
 
     return (
-        // 'container makes this Grid a flex container for the items inside it.'
-        <Grid container>
-            {/* size={12}; all 12 columns, i.e. the full width */}
-            <Grid size={12}>
-                <h1> HomePage </h1>
-            </Grid>
+    <Grid container>
+        <Grid size={12}>
+            <h1>HomePage</h1>
         </Grid>
+        {/* size={3}: a quarter of the 12-column width. */}
+        <Grid size={3}>
+            <MovieCard movie={movies[0]} />
+        </Grid>
+    </Grid>
     );
 };
 
