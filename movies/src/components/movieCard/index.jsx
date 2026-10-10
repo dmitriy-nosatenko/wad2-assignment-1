@@ -32,7 +32,7 @@ export default function MovieCard(props) {
         
         <CardMedia
             sx={{ height: 500 }}
-            images={
+            image={
                 movie.poster_path
                 ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
                 : img 
@@ -41,10 +41,10 @@ export default function MovieCard(props) {
         <CardContent>
             {/* Two equal columns: release date on the left, rating on the right */}
             <Grid container>
-                <Grid size={{ sx: 6 }}>
+                <Grid size={{ xs: 6 }}>
 
-                    {/* Typography: variant controls how the text looks, component
-                        controls which HTML tag is produced */}
+                    {/* Typography: variant controls how the text looks, 
+                        component controls which HTML tag is produced */}
                     <Typography variant="h6" component="p">
                         <CalendarIcon fontSize="small"/>
                         {movie.release_date}
@@ -53,7 +53,7 @@ export default function MovieCard(props) {
                 <Grid size={{ xs: 6 }}>
                     <Typography variant="h6" component="p">
                         <StarRateIcon fontSize="small"/>
-                        {" "} {movie.vot_average}{" "} 
+                        {" "} {movie.vote_average}{" "} 
                     </Typography>
                 </Grid>
             </Grid>
