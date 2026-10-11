@@ -62,6 +62,16 @@ const MovieDetails = ({ movie }) => {
                 {`${movie.revenue.toLocaleString()}`}/> 
                 <Chip label={`Released: ${movie.release_date}`}/>
              </Paper>
+             <Paper component="ul" sx={{ ...root }}>
+  <li>
+    <Chip label="Production Countries" sx={{ ...chip }} color="primary" />
+  </li>
+  {movie.production_countries.map((c) => (
+    <li key={c.iso_3166_1}>
+      <Chip label={c.name} sx={{ ...chip }} />
+    </li>
+  ))}
+</Paper>
 
                    <Fab
         color="secondary"
