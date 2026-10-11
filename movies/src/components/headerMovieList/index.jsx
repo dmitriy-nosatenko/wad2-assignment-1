@@ -19,7 +19,7 @@ const Header = (props) => {
             component="div"
             sx={{
                 display: "flex",
-                justifyContent: "space-arounf",
+                justifyContent: "space-around",
                 flexWrap: "wrap",
                 marginBottom: 1.5,
             }}
