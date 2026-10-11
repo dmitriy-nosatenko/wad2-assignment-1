@@ -54,7 +54,7 @@ const MovieDetails = (props) => {
              </Paper>
 
              <Paper component="ul" sx={{ ...root }}>
-                <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} minor.`}
+                <Chip icon={<AccessTimeIcon />} label={`${movie.runtime} min.`}
                 />
                 <Chip icon={<MonetizationIcon />} label=
                 {`${movie.revenue.toLocaleString()}`}/> 

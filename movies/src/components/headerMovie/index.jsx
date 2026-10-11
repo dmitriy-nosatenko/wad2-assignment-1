@@ -24,7 +24,7 @@ const Header = (props ) => {
       </IconButton>
 
       <Typography variant="h4" component="h3">
-        {title}
+        {movie.title}
       </Typography>
       <IconButton
         aria-label="go forward"
