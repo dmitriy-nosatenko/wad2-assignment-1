@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import Spinner from '../spinner'; 
+import Spinner from '../spinner';
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
@@ -28,7 +28,7 @@ const { data, error, isPending, isError } = useQuery({
 });
 
 if (isPending) {
-  return <Spinnner />;
+  return <Spinner />;
 }
 
 if (isError) {
