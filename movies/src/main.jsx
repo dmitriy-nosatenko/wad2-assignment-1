@@ -7,8 +7,8 @@ import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
 import MovieReviewPage from "./pages/movieReviewPage";
 import SiteHeader from './components/siteHeader'
 import UpcomingMoviesPage from "./pages/upcomingMoviesPage";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query"
-import { ReactQueryDevTools } from '@tanstack/react-query-devtools'
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 const queryClient = new QueryClient({ 
   defaultOptions: {
