@@ -25,9 +25,17 @@ export const getGenres = () => {
          "https://api.themoviedb.org/3/genre/movie/list?api_key=" +
       import.meta.env.VITE_TMDB_KEY +
       "&language=en-US"
-    )
-    .then(res => res.json())
-    .then(json => json.genres);
+    ).then((response) => {
+      if (!response.ok) {
+        return response.json().then((error) => {
+          throw new Error(error.status_messaege || "Something went wrong");
+        }); 
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      throw error 
+    });
 };
 
 export const getMovieImages = (id) => {
