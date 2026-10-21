@@ -15,7 +15,7 @@ export const getMovies = () => {
 };
 
 export const getMovie = (args) => {
-  consol.log(args) 
+  console.log(args) 
   const [, idPart] = args.queryKey; 
   const { id } = idPart; 
   
@@ -42,7 +42,7 @@ export const getGenres = () => {
     ).then((response) => {
       if (!response.ok) {
         return response.json().then((error) => {
-          throw new Error(error.status_messaege || "Something went wrong");
+          throw new Error(status_messaege || "Something went wrong");
         }); 
       }
       return response.json();
@@ -52,24 +52,23 @@ export const getGenres = () => {
     });
 };
 
-export const getMovieImages = ({ queryKey }) => {
-  const [, idPart] = queryKey;
-  const { id } = idPart; 
+  export const getMovieImages = ({ queryKey }) => {
+    const [, idPart] = queryKey;
+    const { id } = idPart;
     return fetch(
-         `https://api.themoviedb.org/3/movie/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
-  )
-    .then((response) => {
+      `https://api.themoviedb.org/3/movie/${id}/images?api_key=${import.meta.env.VITE_TMDB_KEY}`
+    ).then( (response) => {
       if (!response.ok) {
         return response.json().then((error) => {
           throw new Error(error.status_message || "Something went wrong");
-        }); 
+        });
       }
       return response.json();
     })
     .catch((error) => {
-      throw error 
-    });
-};
+      throw error
+   });
+  };
 
 export const getMovieReviews = (id) => {
   return fetch(
@@ -77,7 +76,7 @@ export const getMovieReviews = (id) => {
   )
     .then((res) => res.json())
     .then((json) => {
-      // console.log(json.results);
+      console.log(json.results);
       return json.results;
     });
 };
