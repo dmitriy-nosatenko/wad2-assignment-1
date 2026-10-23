@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { MoviesContext } from "../../contexts/movieContext"; 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
@@ -57,6 +58,9 @@ const styles = {
 };
 
 const ReviewForm = ({ movie }) => {
+
+  const context = useContext(MoviesContext);
+
   const [rating, setRating] = useState(3);
 
   const defaultValues = {
@@ -80,6 +84,7 @@ const ReviewForm = ({ movie }) => {
   const onSubmit = (review) => {
     review.movieid = movie.id;
     review.rating = rating;
+    context.addReview(movie, review); 
     console.log(review); 
   };
 
