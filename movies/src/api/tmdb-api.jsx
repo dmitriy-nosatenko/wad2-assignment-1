@@ -70,7 +70,7 @@ export const getGenres = () => {
    });
   };
 
-export const getMovieReviews = (id) => {
+export const getMovieReviews = ( queryKey ) => {
   const [, idPart] = queryKey;
   const { id } = idPart; 
   return fetch(
